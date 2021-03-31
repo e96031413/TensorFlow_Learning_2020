@@ -1,0 +1,33 @@
+https://github.com/chetnakhanna16/CIFAR100_ImageRecognition/blob/master/EffiicientNetB0_CIFAR100.ipynb
+
+import numpy as np
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+cm = confusion_matrix(np.argmax(y_test, axis=1), y_pred)
+print(cm)
+
+target = ["Category {}".format(i) for i in range(n_classes)]
+print(classification_report(np.argmax(y_test, axis=1), y_pred, target_names=target))
+
+
+
+
+prediction = pd.DataFrame(y_pred)
+rcParams['figure.figsize'] = 12,15
+
+num_row = 4
+num_col = 4
+
+imageId = np.random.randint(0, len(X_test), num_row * num_col)
+
+fig, axes = plt.subplots(num_row, num_col)
+
+for i in range(0, num_row):
+    for j in range(0, num_col):
+        k = (i*num_col)+j
+        axes[i,j].imshow(X_test[imageId[k]])
+        axes[i,j].set_title("True: " + str(subCategory.iloc[testData['fine_labels'][imageId[k]]][0]).capitalize() + "\nPredicted: " + str(subCategory.iloc[prediction.iloc[imageId[k]]]).split()[2].capitalize(), fontsize=14)
+        axes[i,j].axis('off')
+        fig.suptitle("Images with True and Predicted Labels", fontsize=18) 
+
+plt.show()
